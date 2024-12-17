@@ -58,6 +58,7 @@ export function PaginationWithLinks({
   const t = useTranslations("Table");
 
   const totalPageCount = Math.max(Math.ceil(totalCount / pageSize) - 1, 0);
+  console.log("total", totalPageCount);
 
   useEffect(() => {
     if (pageIndex > totalPageCount && !manualPagination) {

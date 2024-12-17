@@ -1,17 +1,9 @@
 "use client";
 
 import BlacklistPage from "../_components/blacklist/BlacklistPage";
-import Header from "../_components/header/Header";
-import Footer from "../_components/footer/Footer";
 
 const ClientPage = () => {
-  return (
-    <div>
-      <Header />
-      <BlacklistPage />
-      <Footer />
-    </div>
-  );
+  return <BlacklistPage />;
 };
 
 export default ClientPage;

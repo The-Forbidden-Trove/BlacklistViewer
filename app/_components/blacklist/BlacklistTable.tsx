@@ -108,7 +108,21 @@ export default function BlacklistTable({
     },
   });
 
-  const totalRowCount = React.useMemo(() => table.getRowCount(), [table]);
+  const [totalRowCount, setTotalRowCount] = React.useState(0);
+  const [selectedItemsCount, setSelectedItemsCount] = React.useState(0);
+  const [filteredSelectedItemsCount, setFilteredSelectedItemsCount] =
+    React.useState(0);
+
+  React.useEffect(() => {
+    setTotalRowCount(table.getFilteredRowModel().rows.length);
+
+    const rowCount = table.getRowModel().rows.length;
+    const filteredRowCount = table.getFilteredRowModel().rows.length;
+
+    setSelectedItemsCount(rowCount);
+    setFilteredSelectedItemsCount(filteredRowCount);
+  }, [table, table.getFilteredRowModel(), table.getRowModel()]);
+
   return (
     <div>
       <div className="w-full flex items-center justify-center my-4">
@@ -152,8 +166,8 @@ export default function BlacklistTable({
           pageSizeOptions: [10, 25, 50, 100],
         }}
         selectedItemsOptions={{
-          selectedItems: table.getRowModel().rows.length,
-          filteredSelectedItems: table.getFilteredRowModel().rows.length,
+          selectedItems: selectedItemsCount,
+          filteredSelectedItems: filteredSelectedItemsCount,
         }}
       />
     </div>
